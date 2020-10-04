@@ -23,7 +23,7 @@
 ### ISC
 
 ## Contributions
-### Contact me directory for permission to contribute. I want to expand on this repository by using different template engines.
+### Contact me
 
 ## Tests
 ### This repository is basically the test for first time setting up and using Firebase.
