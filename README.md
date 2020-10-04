@@ -11,7 +11,7 @@
 * [Resources](#resources)
     
 ## Description
-### A simple set up for authenticating users on React using Firebase
+### A simple set up for authenticating users on React using Firebase. There is no redirect set in the application yet.
     
 ## Installation
 ### npx create-react-app . // npm i firebase "see resources below"
