@@ -5,19 +5,18 @@ import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import RandomPage from "./pages/RandomPage";
 import Navigation from "./components/Navigation";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <header className="App-header">
           <Navigation />
           <Switch>
             <Route exact path="/signuppage" component={SignupPage} />
-            <Route exact path="/homepage" component={HomePage} />
+            <ProtectedRoute exact path="/homepage" component={HomePage} />
             <Route exact path="/randompage" component={RandomPage} />
           </Switch>
-        </header>
       </div>
     </Router>
   );
