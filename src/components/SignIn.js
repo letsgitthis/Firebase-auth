@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+// import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { withRouter, Redirect } from "react-router";
 import firebase from "firebase";
 // import app from "../setupFirebase";
@@ -7,14 +7,16 @@ import { AuthContext } from "../context/Auth";
 
 const SignIn = ({ history }) => {
   const handleSignup = useCallback(
-    async event => {
+    async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
-      // either use onAuthStateChanged or replace with 
-      // EmailAuthProvider && GoogleAuthProvider
-       await firebase.auth().EmailAuthProvider(email.value, password.value);
-       history.push("/");
+        // either use onAuthStateChanged or replace with
+        // EmailAuthProvider && GoogleAuthProvider
+        await firebase
+          .auth()
+          .signUpWithEmailAndPassword(email.value, password.value);
+        history.push("/");
       } catch (error) {
         alert(error);
       }
@@ -27,7 +29,7 @@ const SignIn = ({ history }) => {
   //   signInOptions: [
   //     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   //     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //   ], 
+  //   ],
   // };
 
   // console.log(user);
@@ -46,20 +48,33 @@ const SignIn = ({ history }) => {
   } else {
     return (
       <>
-        <div>Sign up / Register</div>
+        {/* <div>Sign up / Register</div>
         <StyledFirebaseAuth
           // uiConfig={uiConfig}
           // sign in method may change to correct this for now
           onsubmit={handleSignup}
           firebaseAuth={firebase.auth()}
-        />
+        /> */}
+        <div>
+          <h1>Log in</h1>
+          <form onSubmit={handleSignup}>
+            <label>
+              Email
+              <input name="email" type="email" placeholder="Email" />
+            </label>
+            <label>
+              Password
+              <input name="password" type="password" placeholder="Password" />
+            </label>
+            <button type="submit">Log in</button>
+          </form>
+        </div>
       </>
     );
   }
 };
 
 export default withRouter(SignIn);
-
 
 // function SignIn() {
 //   const [user, setUser] = useState(null);
@@ -93,7 +108,7 @@ export default withRouter(SignIn);
 //         return false;
 //       },
 //     },
-    
+
 //   };
 
 // function signOut() {
