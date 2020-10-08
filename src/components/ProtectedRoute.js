@@ -1,18 +1,22 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { AuthContext } from "../context/Auth";
 
-class ProtectedRoute extends React.Component {
-
-    render() {
-        const Component = this.props.component;
-        const isAuthenticated = false;
-       
-        return isAuthenticated ? (
-            <Component />
+const ProtectedRoute = ({ component: RouteComponent, ...rest }) => {
+  const {currentUser} = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={routeProps =>
+        !!currentUser ? (
+          <RouteComponent {...routeProps} />
         ) : (
-            <Redirect to={{ pathname: '/signuppage' }} />
-        );
-    }
-}
+          <Redirect to={"/signuppage"} />
+        )
+      }
+    />
+  );
+};
+
 
 export default ProtectedRoute;

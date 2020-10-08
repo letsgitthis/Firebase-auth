@@ -4,21 +4,25 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import RandomPage from "./pages/RandomPage";
-import Navigation from "./components/Navigation";
+import NavbarTabs from "./components/NavbarTabs";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/Auth";
 
+// class App extends Component {
 function App() {
   return (
-    <Router>
-      <div className="App">
-          <Navigation />
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <NavbarTabs />
           <Switch>
             <Route exact path="/signuppage" component={SignupPage} />
             <ProtectedRoute exact path="/homepage" component={HomePage} />
-            <Route exact path="/randompage" component={RandomPage} />
+            <ProtectedRoute exact path="/randompage" component={RandomPage} />
           </Switch>
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

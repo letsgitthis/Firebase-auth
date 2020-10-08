@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navigation() {
+function NavbarTabs() {
 
   const location = useLocation();
 
@@ -20,4 +20,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default NavbarTabs;
